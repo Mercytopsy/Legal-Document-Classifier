@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Legal Case Predictor</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .dataframe { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .dataframe th, .dataframe td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        h1 { color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Legal Categories</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="csv_file" required>
+            <input type="submit" value="Click to Predict">
+        </form>
+
+        {% if tables %}
+            <h2>Prediction Results</h2>
+            {{ tables[0]|safe }}
+        {% endif %}
+    </div>
+</body>
+</html>
