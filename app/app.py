@@ -1,10 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
-# import numpy as np
-# import torch
-# from transformers import DistilBertTokenizer, DistilBertModel
-# import joblib
-from model_utils import predict_new_cases
+
+from .model_utils import predict_new_cases
 
 app = Flask(__name__)
 
