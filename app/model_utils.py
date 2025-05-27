@@ -6,7 +6,14 @@ import joblib
 import os
 
 
-model_folder = "../models"
+# model_folder = "../models"
+# cat_model = joblib.load(os.path.join(model_folder, "model.pkl"))
+# label_encoder = joblib.load(os.path.join(model_folder, "label_encoder.pkl"))
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Construct absolute paths to model files
+model_folder = os.path.join(BASE_DIR, "..", "models")
 cat_model = joblib.load(os.path.join(model_folder, "model.pkl"))
 label_encoder = joblib.load(os.path.join(model_folder, "label_encoder.pkl"))
 
@@ -17,8 +24,7 @@ tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 bert_model = DistilBertModel.from_pretrained("distilbert-base-uncased").to(device)
 
 
-# cat_model = joblib.load("model.pkl")
-# label_encoder = joblib.load("label_encoder.pkl")
+
 
 # Text cleaning and embedding
 def clean_text(text):
