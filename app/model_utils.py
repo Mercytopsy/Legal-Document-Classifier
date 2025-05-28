@@ -6,16 +6,10 @@ import joblib
 import os
 
 
-# model_folder = "../models"
-# cat_model = joblib.load(os.path.join(model_folder, "model.pkl"))
-# label_encoder = joblib.load(os.path.join(model_folder, "label_encoder.pkl"))
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Construct absolute paths to model files
-model_folder = os.path.join(BASE_DIR, "..", "models")
+model_folder = "../models"
 cat_model = joblib.load(os.path.join(model_folder, "model.pkl"))
 label_encoder = joblib.load(os.path.join(model_folder, "label_encoder.pkl"))
+
 
 
 # Load tokenizer, model, and label encoder
@@ -59,4 +53,4 @@ def predict_new_cases(df_new):
     embeddings = np.array([get_embedding(text) for text in df_new['clean_full_report']])
     y_pred = cat_model.predict(embeddings)
     df_new['predicted_label'] = label_encoder.inverse_transform(y_pred)
-    return df_new[['predicted_label']]
+    return df_new[['predicted_label']].to_dict(orient='records')
