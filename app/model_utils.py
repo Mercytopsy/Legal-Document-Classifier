@@ -48,6 +48,7 @@ def get_embedding(text):
     chunks = chunk_text(text)
     return embed_chunks(chunks)
 
+#generate predictions
 def predict_new_cases(df_new):
     df_new['clean_full_report'] = df_new['full_report'].apply(clean_text)
     embeddings = np.array([get_embedding(text) for text in df_new['clean_full_report']])
